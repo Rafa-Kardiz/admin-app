@@ -1,0 +1,26 @@
+<p-card [header]="tittle" class="shadow-xl/20! border! border-gray-300!">
+   <form class="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-3">
+      <p-floatlabel variant="on" class="mb-6">
+         <input pInputText id="on_label" autocomplete="off" class="w-full!" />
+         <label for="on_label">On Label</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on" class="mb-6">
+         <input pInputText id="on_label" autocomplete="off" class="w-full!" />
+         <label for="on_label">On Label</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on" class="mb-6">
+         <input pInputText id="on_label" autocomplete="off" class="w-full!" />
+         <label for="on_label">On Label</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on" class="mb-6">
+         <input pInputText id="on_label" autocomplete="off" class="w-full!" />
+         <label for="on_label">On Label</label>
+      </p-floatlabel>
+   </form>
+   <ng-template #footer>
+      <div class="flex gap-4 mt-1 justify-end">
+         <p-button label="Cancel" severity="secondary" class="w-30" [outlined]="true" styleClass="w-full" />
+         <p-button label="Save" styleClass="w-30" severity="info" />
+      </div>
+   </ng-template>
+</p-card>

@@ -1,0 +1,30 @@
+<div class="flex min-h-screen bg-linear-106 from-[#5b5c5d] to-[#1b1a1e]">
+   <div class="hidden sm:flex sm:w-1/2 bg-cover bg-center">
+
+   </div>
+   <div class="flex flex-1 flex-col justify-center items-center px-4 sm:px-6 lg:px-20 xl:px-28 py-12 lg:w-1/2">
+      <p-card header="Iniciar sesión" class="w-100 text-center">
+         <form [formGroup]="loginForm" autocomplete="off">
+            <p-floatlabel variant="on" class=" my-6">
+               <input formControlName="usuario" pInputText id="in_label" autocomplete="off" class="w-full" />
+               <label for="in_label">Usuario</label>
+               @if(loginForm.invalid && loginForm.touched && loginForm.controls["usuario"].errors) {
+               <small id="user_error" class="text-red-500">El usuario debe ser un correo valido.</small>
+               }
+            </p-floatlabel>
+            <p-floatlabel variant="on" class=" my-6">
+               <p-password formControlName="contrasenia" inputId="on_label" class="[&>*]:w-full w-full"
+                  [toggleMask]="true" [feedback]="false" />
+               <label for="on_label">Contraseña</label>
+
+               @if(loginForm.invalid && loginForm.touched && loginForm.controls["contrasenia"].errors) {
+               <small id="user_error" class="text-red-500">Favor de ingresar su contraseña.</small>
+               }
+            </p-floatlabel>
+            <p-button label="Ingresar" type="submit" icon="pi pi-user" variant="outlined" severity="success"
+               [disabled]="" (click)="loginUser()" />
+         </form>
+      </p-card>
+   </div>
+</div>
+<p-toast />
