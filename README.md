@@ -1,59 +1,151 @@
-# AdminApp
+# Admin App - Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+Aplicación de administración construida con **Angular** para la gestión de usuarios con roles.  
+El proyecto sigue principios de **Clean Architecture** y aplica varios **patrones de diseño**, integrando almacenamiento local con **IndexedDB** y sincronización con **APIs externas**.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Tecnologías Principales
 
+### Framework
+- **Angular 20.0.0** – Framework principal de la aplicación 
+
+### UI y Estilos
+- **PrimeNG 20.1.1** – Biblioteca de componentes UI 
+- **PrimeIcons 7.0.0** – Iconografía 
+- **TailwindCSS 4.1.12** – Framework CSS utilitario 
+- **@primeuix/themes 1.2.3** – Temas para PrimeNG
+
+### Base de Datos y Almacenamiento
+- **IndexedDB (idb 8.0.3)** – Base de datos local del navegador 
+
+### Utilidades
+- **RxJS 7.8.0** – Programación reactiva 
+- **UUID 11.1.0** – Generación de identificadores únicos 
+
+---
+
+## ⚙️ Instalación
+
+### Prerrequisitos
+- Node.js (versión compatible con Angular 20)
+- npm o yarn
+
+### Pasos
 ```bash
+# Clonar el repositorio
+git clone https://github.com/Rafa-Kardiz/admin-app
+cd admin-app
+
+# Instalar dependencias
+npm install
+
+# Ejecutar en modo desarrollo
+npm start
+# o
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
+# Construir para producción
+npm run build
+# o
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Scripts Disponibles
+- `npm start` → Servidor de desarrollo
+- `npm run build` → Construcción para producción
+- `npm run watch` → Construcción en modo watch
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 🏗️ Arquitectura del Proyecto
 
-```bash
-ng test
-```
+El proyecto está organizado en **tres capas principales** siguiendo **Clean Architecture**:
 
-## Running end-to-end tests
+### 1. Capa de Dominio (`/domain`)
+- Define **interfaces** y **modelos de negocio** sin dependencias externas.  
+- Repositorios definidos como contratos claros.  
+  Ejemplo: `app/domain/repositories/auth-repository.ts`, `app/domain/repositories/user-repository.ts`.
 
-For end-to-end (e2e) testing, run:
+### 2. Capa de Datos (`/data`)
+- Implementa los repositorios definidos en el dominio.  
+- Maneja acceso a datos **locales (IndexedDB)** y **remotos (APIs)**.
+- Incluye:
+  - **Data Sources Locales**: `app/data/data-sources/local/user-local-db.ts`
+  - **Data Sources Remotos**: servicios API
+  - **Repositorios**: implementaciones concretas `app/data/data-sources/repositories/user-repository.ts`
 
-```bash
-ng e2e
-```
+### 3. Capa de Presentación (`/features`)
+- Organizada por módulos funcionales y componentes.
+- Maneja rutas, guards y resolvers.  
+  Ejemplo: `AdminModule.routes.ts`
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 🧩 Patrones de Diseño Implementados
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. **Repository Pattern**  
+   Abstracción de acceso a datos mediante interfaces y repositorios.  
+   `app/domain/respositories/user-repository.ts`,
+
+2. **Dependency Injection**  
+   Servicios inyectados con el sistema de DI de Angular.
+
+3. **Interceptor Pattern**  
+   Interceptores HTTP para autenticación.  
+   `app/core/interceptors/http-interceptor-interceptor.ts`
+
+4. **Observer Pattern**  
+   Uso de **RxJS Observables** y **Angular Signals**.
+
+---
+
+## 🧱 Principios SOLID Aplicados
+
+- **SRP (Single Responsibility Principle)**  
+  Cada clase tiene una única responsabilidad.  
+  Ejemplo:  
+  - `UserLocalDbService` → persistencia local  
+  - `AuthRepositoryService` → autenticación  
+
+- **OCP (Open/Closed Principle)**  
+  Repositorios extensibles sin modificar código existente.  
+  `auth-repository.ts`
+
+- **DIP (Dependency Inversion Principle)**  
+  Dependencia en interfaces, no en implementaciones.  
+  `login.ts`
+
+---
+
+## ⚡ Arquitectura de Componentes
+
+- **Componentes Reutilizables**: Ej. `TableComponent` configurable vía inputs.  
+- **Lazy Loading**: carga perezosa para optimizar rendimiento.  
+- **Guards y Resolvers**: control de acceso por roles y precarga de datos.  
+- **Gestión de Estado**: combinación de **Angular Signals** + **Reactive Forms**.  
+- **Persistencia Híbrida**: LocalStorage + IndexedDB.  
+
+---
+
+## 🎨 Configuración de Estilos
+- PostCSS + TailwindCSS + Autoprefixer.
+
+---
+
+## 📌 Notas Finales
+- Proyecto Angular **SPA** con soporte de **standalone components** y **signals**.  
+- Arquitectura modular y escalable gracias a **Clean Architecture**.  
+- El uso de **interfaces estrictas con TypeScript** facilita mantenimiento.
+- En la primera carga, la lista de usuarios se obtiene desde 🔗 [Placeholder](https://jsonplaceholder.typicode.com/users) Posteriormente, los datos se almacenan en IndexedDB, y a partir de ahí todas las operaciones y cambios se gestionan localmente.
+---
+
+
+## 🌍 Despliegue
+
+Este proyecto está desplegado en **Vercel**, con integración continua desde GitHub.  
+Puedes acceder a la aplicación en el siguiente enlace:  
+
+🔗 [Admin App en Vercel](https://admin-app-three-pink.vercel.app/login)
+
+---
