@@ -42,14 +42,14 @@
          @if(columns().length > 0) {
          <td>
             <p-button icon="pi pi-info-circle" [rounded]="true" [text]="true" severity="success" pTooltip="Ver detalles"
-               tooltipPosition="bottom" (click)="viewDetails(data[uniqueIdColumn()])" />
+               tooltipPosition="top" (click)="viewDetails(data[uniqueIdColumn()])" />
             @if (tableCrudPermission().edit) {
             <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="info" pTooltip="Editar"
-               tooltipPosition="bottom" (click)="editData(data[uniqueIdColumn()])" />
+               tooltipPosition="top" (click)="editData(data[uniqueIdColumn()])" />
             }
             @if (tableCrudPermission().delete) {
             <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" pTooltip="Eliminar"
-               tooltipPosition="bottom" (click)="deleteData(data[uniqueIdColumn()])" />
+               tooltipPosition="top" (click)="deleteData(data[uniqueIdColumn()])" />
             }
 
          </td>

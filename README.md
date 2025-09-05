@@ -5,7 +5,7 @@ El proyecto sigue principios de **Clean Architecture** y aplica varios **patrone
 
 ---
 
-## 🚀 Tecnologías Principales
+## Tecnologías Principales
 
 ### Framework
 - **Angular 20.0.0** – Framework principal de la aplicación 
@@ -25,7 +25,7 @@ El proyecto sigue principios de **Clean Architecture** y aplica varios **patrone
 
 ---
 
-## ⚙️ Instalación
+## Instalación
 
 ### Prerrequisitos
 - Node.js (versión compatible con Angular 20)
@@ -58,7 +58,7 @@ ng build
 
 ---
 
-## 🏗️ Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
 El proyecto está organizado en **tres capas principales** siguiendo **Clean Architecture**:
 
@@ -82,7 +82,7 @@ El proyecto está organizado en **tres capas principales** siguiendo **Clean Arc
 
 ---
 
-## 🧩 Patrones de Diseño Implementados
+## Patrones de Diseño Implementados
 
 1. **Repository Pattern**  
    Abstracción de acceso a datos mediante interfaces y repositorios.  
@@ -100,7 +100,7 @@ El proyecto está organizado en **tres capas principales** siguiendo **Clean Arc
 
 ---
 
-## 🧱 Principios SOLID Aplicados
+## Principios SOLID Aplicados
 
 - **SRP (Single Responsibility Principle)**  
   Cada clase tiene una única responsabilidad.  
@@ -118,7 +118,7 @@ El proyecto está organizado en **tres capas principales** siguiendo **Clean Arc
 
 ---
 
-## ⚡ Arquitectura de Componentes
+## Arquitectura de Componentes
 
 - **Componentes Reutilizables**: Ej. `TableComponent` configurable vía inputs.  
 - **Lazy Loading**: carga perezosa para optimizar rendimiento.  
@@ -128,12 +128,12 @@ El proyecto está organizado en **tres capas principales** siguiendo **Clean Arc
 
 ---
 
-## 🎨 Configuración de Estilos
+## Configuración de Estilos
 - PostCSS + TailwindCSS + Autoprefixer.
 
 ---
 
-## 📌 Notas Finales
+## Notas Finales
 - Proyecto Angular **SPA** con soporte de **standalone components** y **signals**.  
 - Arquitectura modular y escalable gracias a **Clean Architecture**.  
 - El uso de **interfaces estrictas con TypeScript** facilita mantenimiento.
@@ -141,7 +141,7 @@ El proyecto está organizado en **tres capas principales** siguiendo **Clean Arc
 ---
 
 
-## 🌍 Despliegue
+## Despliegue
 
 Este proyecto está desplegado en **Vercel**, con integración continua desde GitHub.  
 Puedes acceder a la aplicación en el siguiente enlace:  
