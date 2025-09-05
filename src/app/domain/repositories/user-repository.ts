@@ -2,9 +2,9 @@ import { Usermodel } from "@models/usermodel";
 import { Observable } from "rxjs";
 
 export interface IUserRepository {
-   createUser(user: Usermodel): boolean;
-   editUser(idUser: number): Promise<Usermodel>;
-   deleteUser(idUser: number): Promise<boolean>;
-   getUser(idUser: number): Promise<Usermodel | undefined>;
+   createUser(user: Usermodel): Promise<boolean>;
+   editUser(uuid: string): Promise<Usermodel>;
+   deleteUser(uuid: string): Promise<boolean>;
+   getUser(uuid: string): Promise<Usermodel | undefined>;
    getAllUsers(): Promise<Usermodel[]>
 }

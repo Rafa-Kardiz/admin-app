@@ -5,13 +5,14 @@ import { IAuthRepository } from '@repositories/auth-repository';
 import { v4 as uuidv4 } from 'uuid';
 import { environment } from '@enviroments/environment';
 import { LocalStorageService } from '@data/data-sources/local/local-storage';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthRepositoryService implements IAuthRepository {
 
-  constructor(private apiService: GeneralApiService, private storageService: LocalStorageService) { }
+  constructor(private apiService: GeneralApiService, private storageService: LocalStorageService, private router: Router) { }
 
   async authLogin(userLogin: UserLoginModel): Promise<Usermodel | null> {
     const baseUrl = environment.authUrl;
@@ -33,8 +34,9 @@ export class AuthRepositoryService implements IAuthRepository {
     }
   }
 
-  logout(): void {
-
+  async logout(): Promise<void> {
+    await this.storageService.clearAll();
+    this.router.navigateByUrl('/login')
   }
 
   getToken(): string {

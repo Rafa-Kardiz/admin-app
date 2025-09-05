@@ -29,14 +29,13 @@ export class Login {
   }
 
   loginUser() {
-    if (this.loginForm.invalid && this.loginForm.touched) {
+    if (this.loginForm.invalid && !this.loginForm.touched) {
       this.messageService.add({ severity: 'warn', summary: 'Formulario invalido', detail: 'Favor de revisar los datos ingresados' });
       this.loginForm.markAllAsTouched()
       return;
     }
     const userLoginData: UserLoginModel = this.loginForm.getRawValue();
     this.authRepository.authLogin(userLoginData).then(result => {
-      console.log(result);
       if (result) {
         this.messageService.add({ severity: 'success', summary: 'Logeo exitoso', detail: `Bienvenido: ${result.username}` });
         this.router.navigate(['/admin']);

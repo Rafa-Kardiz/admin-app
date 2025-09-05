@@ -1,12 +1,13 @@
 <p-table #dt2 [paginator]="false" [globalFilterFields]="globalFilter" [value]="data()" [rows]="10"
    [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true" [tableStyle]="{ 'min-width': '50rem' }">
    <ng-template #caption>
-      <div class="w-1/2">
-         <p-floatlabel variant="on" class=" my-6">
-            <input pInputText id="in_label" autocomplete="off" class="w-full"
+      <div class="py-3 w-full sm:w-1/2 h-10">
+         <p-floatlabel variant="on">
+            <input pInputText id="buscar" autocomplete="off" class="w-full p-2"
                (input)="dt2.filterGlobal($event.target.value, 'contains')" />
             <label for="in_label">Buscar...</label>
          </p-floatlabel>
+         <hr>
       </div>
 
    </ng-template>
@@ -41,10 +42,17 @@
          }
          @if(columns().length > 0) {
          <td>
+            <p-button icon="pi pi-info-circle" [rounded]="true" [text]="true" severity="success" pTooltip="Ver detalles"
+               tooltipPosition="bottom" (click)="viewDetails(data[uniqueIdColumn()])" />
+            @if (tableCrudPermission().edit) {
             <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="info" pTooltip="Editar"
                tooltipPosition="bottom" (click)="editData(data[uniqueIdColumn()])" />
+            }
+            @if (tableCrudPermission().delete) {
             <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" pTooltip="Eliminar"
                tooltipPosition="bottom" (click)="deleteData(data[uniqueIdColumn()])" />
+            }
+
          </td>
          }
       </tr>

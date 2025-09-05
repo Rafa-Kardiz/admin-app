@@ -1,19 +1,20 @@
 export interface Usermodel {
-   id: number,
+   id?: number,
    name: string,
    username: string,
    email: string,
    role: Role,
-   password: string,
+   password?: string,
    phone?: string,
    address?: Address,
-   company?: Company
+   company?: Company,
+   uuid: string
 }
 
 export enum Role {
-   "manager",
-   "coordinator",
-   ""
+   Manager = "manager",
+   Coordinator = "coordinator",
+   User = "user"
 }
 
 export interface UserLoginModel {

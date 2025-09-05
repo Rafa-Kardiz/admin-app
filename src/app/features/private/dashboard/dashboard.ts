@@ -8,6 +8,7 @@ import { Usermodel } from '@models/usermodel';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
+import { AuthRepositoryService } from '@data/repositories/auth-repository';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,13 +19,18 @@ export class Dashboard {
   userLocal = inject(LocalStorageService).getItem<Usermodel>("user");
   user: Usermodel | null = null;
   items: MenuItem[] = [
-    { label: "Home", url: "/admin/home" },
+    // { label: "Home", url: "/admin/home" },
     { label: "Usuarios", url: "/admin/user-list" }
-  ]
-  constructor() {
+  ];
+
+  constructor(private authService: AuthRepositoryService) {
     this.userLocal.subscribe(usr => {
       this.user = usr;
     });
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

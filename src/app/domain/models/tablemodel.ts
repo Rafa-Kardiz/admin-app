@@ -3,3 +3,8 @@ export interface tableModel {
    key: string
 }
 
+export interface tablePermission {
+   edit: boolean,
+   delete: boolean,
+   crete: boolean
+}

@@ -1,9 +1,13 @@
 <div class="flex min-h-screen bg-linear-106 from-[#5b5c5d] to-[#1b1a1e]">
    <div class="hidden sm:flex sm:w-1/2 bg-cover bg-center">
-
+      <div class="flex flex-1 flex-col justify-center items-center">
+         <h1 class="text-5xl font-bold mb-5 text-white">Bienvenido al sistema de usuarios</h1>
+         <h4 class="text-2xl italic text-neutral-500 mb-8">Favor de ingresar con sus credenciales</h4>
+      </div>
    </div>
-   <div class="flex flex-1 flex-col justify-center items-center px-4 sm:px-6 lg:px-20 xl:px-28 py-12 lg:w-1/2">
-      <p-card header="Iniciar sesión" class="w-100 text-center">
+   <div class="flex flex-1 flex-col justify-center items-center w-18 px-4 sm:px-6 lg:px-20 xl:px-28 py-12 lg:w-1/2">
+
+      <p-card header="Iniciar sesión" class=" w-xs sm:w-xl text-center">
          <form [formGroup]="loginForm" autocomplete="off">
             <p-floatlabel variant="on" class=" my-6">
                <input formControlName="usuario" pInputText id="in_label" autocomplete="off" class="w-full" />

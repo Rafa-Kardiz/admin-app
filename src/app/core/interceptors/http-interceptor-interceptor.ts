@@ -6,7 +6,7 @@ export const httpInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
   const authToken = inject(AuthRepositoryService).getToken();
 
   const newRequest = req.clone({
-    headers: req.headers.set('Autorization', authToken)
+    headers: req.headers.set('Autorization', "miToken" + authToken)
   })
   return next(newRequest);
 };

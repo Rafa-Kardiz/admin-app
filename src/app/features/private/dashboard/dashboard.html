@@ -1,14 +1,13 @@
 <p-menubar [model]="items" class="bg-blue-200!">
    <ng-template #end>
-      <!-- <div class="flex items-center gap-2"> -->
       <p-button severity="contrast" size="small" (click)="menu.toggle($event)" [label]="user?.username || 'D'"
          severity="contrast" variant="text" />
       <p-menu #menu [popup]="true">
          <ng-template #start>
-            <p-button label="Logout" class="[&>*]:w-full!" icon="pi pi-sign-out" severity="secondary" size="small" />
+            <p-button label="Logout" class="[&>*]:w-full!" icon="pi pi-sign-out" severity="secondary" size="small"
+               (click)="logout()" />
          </ng-template>
       </p-menu>
-      <!-- </div> -->
    </ng-template>
 </p-menubar>
 

@@ -1,26 +1,76 @@
 <p-card [header]="tittle" class="shadow-xl/20! border! border-gray-300!">
-   <form class="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-3">
-      <p-floatlabel variant="on" class="mb-6">
-         <input pInputText id="on_label" autocomplete="off" class="w-full!" />
-         <label for="on_label">On Label</label>
+   <div class="mb-8">
+      <p-button label="Regresar a la lista" severity="secondary" variant="text" [raised]="true" severity="info"
+         size="small" (click)="regresar()" />
+   </div>
+
+
+
+   <form class="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-3" [formGroup]="userForm" autocomplete="off">
+
+      <p-floatlabel variant="on" class="mb-6 flex flex-col gap-2">
+         <input pInputText id="name" autocomplete="off" class="w-full!" formControlName="name"
+            [invalid]=' (userForm.touched || userForm.dirty) && userForm.controls["name"].errors' />
+         <label for="name">Nombre</label>
+         @if((userForm.touched || userForm.dirty) && userForm.controls["name"].hasError("required")) {
+         <small id="name_error" class="text-red-500">El nombre es requerido</small>
+         }
+
       </p-floatlabel>
+
+
       <p-floatlabel variant="on" class="mb-6">
-         <input pInputText id="on_label" autocomplete="off" class="w-full!" />
-         <label for="on_label">On Label</label>
+         <input pInputText id="username" autocomplete="off" class="w-full!" formControlName="username"
+            [invalid]=' (userForm.touched || userForm.dirty) && userForm.controls["username"].errors' />
+         <label for="username">Nombre de ususario</label>
+         @if((userForm.touched || userForm.dirty) && userForm.controls["username"].hasError("required")) {
+         <small id="username_error" class="text-red-500">El usuario es requerido</small>
+         }
+         @if((userForm.touched || userForm.dirty) && userForm.controls["username"].hasError("minlength")) {
+         <small id="username_error" class="text-red-500">El usuario debe tener al menos 4 caracteres</small>
+         }
+         @if((userForm.touched || userForm.dirty) && userForm.controls["username"].hasError("maxlength")) {
+         <small id="username_error" class="text-red-500">El usuario debe tener maximo 12 caracteres</small>
+         }
       </p-floatlabel>
+
       <p-floatlabel variant="on" class="mb-6">
-         <input pInputText id="on_label" autocomplete="off" class="w-full!" />
-         <label for="on_label">On Label</label>
+         <input pInputText id="email" autocomplete="off" class="w-full!" formControlName="email"
+            [invalid]=' (userForm.touched || userForm.dirty) && userForm.controls["email"].errors' />
+         <label for="email">Correo</label>
+         @if((userForm.touched || userForm.dirty) && userForm.controls["email"].hasError("required")) {
+         <small id="email_error" class="text-red-500">Formato de correo invalido</small>
+         }
       </p-floatlabel>
+
       <p-floatlabel variant="on" class="mb-6">
-         <input pInputText id="on_label" autocomplete="off" class="w-full!" />
-         <label for="on_label">On Label</label>
+         <p-select [options]="roles" optionLabel="label" optionValue="value" placeholder="" class="w-full"
+            formControlName="role"
+            [invalid]=' (userForm.touched || userForm.dirty) && userForm.controls["role"].errors' />
+         <label for="role">Rol</label>
+         @if((userForm.touched || userForm.dirty) && userForm.controls["role"].hasError("required")) {
+         <small id="role_error" class="text-red-500">Seleccionar un rol</small>
+         }
       </p-floatlabel>
+
+
+      <p-floatlabel variant="on" class="mb-6">
+         <p-inputmask id="phone" class="[&>*]:w-full" formControlName="phone" mask="99-9999-9999"
+            [invalid]=' (userForm.touched || userForm.dirty) && userForm.controls["phone"].errors' />
+         <label for="phone">Teléfono</label>
+         @if((userForm.touched || userForm.dirty) && userForm.controls["phone"].hasError("required")) {
+         <small id="name_error" class="text-red-500">El teléfono es requerido</small>
+         }
+      </p-floatlabel>
+
+
    </form>
    <ng-template #footer>
       <div class="flex gap-4 mt-1 justify-end">
-         <p-button label="Cancel" severity="secondary" class="w-30" [outlined]="true" styleClass="w-full" />
-         <p-button label="Save" styleClass="w-30" severity="info" />
+         @if(!disableForm) {
+         <p-button label="Save" styleClass="w-30" severity="info" (click)="sumbitUser()" />
+         }
       </div>
    </ng-template>
 </p-card>
+<p-toast />

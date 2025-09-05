@@ -1,5 +1,11 @@
 <p-card header="Lista de usuarios" class="shadow-xl/20! border! border-gray-300!">
-   <p-button label="Agregar usuario" (click)="addUser()" />
-   <app-table [columns]="columList" [data]="data" [uniqueIdColumn]="'id'" (editAction)="editUser($event)"
-      (deleteAction)="deleteUser($event)"></app-table>
+   <div class="flex justify-end">
+      <p-button label="Agregar usuario" (click)="addUser()" />
+   </div>
+
+   <p-confirmdialog />
+   <p-toast />
+   <app-table [columns]="columList" [data]="userData()" [uniqueIdColumn]="'uuid'"
+      [tableCrudPermission]="userTablePermision" (editAction)="editUser($event)" (deleteAction)="deleteUser($event)"
+      (viewDetailAction)="viewDetail($event)"></app-table>
 </p-card>

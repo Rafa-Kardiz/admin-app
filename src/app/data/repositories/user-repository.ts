@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { UserLocalDbService } from '@data/data-sources/local/user-local-db';
 import { GeneralApiService } from '@data/data-sources/remote/general-api';
 import { environment } from '@enviroments/environment';
-import { Usermodel } from '@models/usermodel';
+import { Role, Usermodel } from '@models/usermodel';
 import { IUserRepository } from '@repositories/user-repository';
+import { firstValueFrom } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -16,46 +18,52 @@ export class UserRepositoryServices implements IUserRepository {
   ) { }
 
 
-  createUser(user: Usermodel): boolean {
+  async createUser(user: Usermodel): Promise<boolean> {
     try {
-      this.local.save(user);
+      await this.local.save(user);
       return true;
     } catch (error) {
+      console.log("ocurrio un error " + error);
       return false;
     }
   }
 
-  editUser(idUser: number): Promise<Usermodel> {
+  editUser(uuid: string): Promise<Usermodel> {
     throw new Error('Method not implemented.');
   }
 
-  async deleteUser(idUser: number): Promise<boolean> {
-    await this.local.delete(idUser.toString());
-    return true
+  async deleteUser(uuid: string): Promise<boolean> {
+    try {
+      await this.local.delete(uuid);
+      return true;
+    } catch (error) {
+      console.log("ocurrio un error con la eliminacion");
+      return false
+    }
   }
 
-  async getUser(idUser: number): Promise<Usermodel | undefined> {
-    return this.local.getById(idUser.toString());
+  async getUser(uuid: string): Promise<Usermodel | undefined> {
+    return await this.local.getById(uuid);
   }
 
   async getAllUsers(): Promise<Usermodel[]> {
     try {
-      let remoteUsers: Usermodel[] = [];
-      this.remote.httpGet(environment.usersApi).subscribe(usr => {
-        remoteUsers = usr as Usermodel[]
-      });
-
-      if (remoteUsers) {
-        // sincronizamos
-        for (const user of remoteUsers) {
-          await this.local.save(user);
-        }
-        return remoteUsers;
+      // primero obtenemos de local 
+      let users: Usermodel[] = await this.local.getAll();
+      // si hay datos regresamos lo que hay en local 
+      if (users.length > 0) return users;
+      // En caso contrario vamos por el listado al endpoint y actualizamos el local
+      users = await firstValueFrom(this.remote.httpGet<Usermodel[]>(environment.usersApi));
+      for (const user of users) {
+        user.uuid = uuidv4();
+        user.role = Role["User"]
+        await this.local.save(user);
       }
+      return users;
     } catch {
-      return this.local.getAll();
+      console.log("Ocurrio un error al obtener los usuarios")
+      return []
     }
-    return [];
   }
 
 }

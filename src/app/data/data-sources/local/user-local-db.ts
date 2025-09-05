@@ -23,10 +23,10 @@ export class UserLocalDbService {
   }
 
   private async initDB() {
-    return openDB<MyDB>('MyAppDB', 1, {
+    return openDB<MyDB>('pruebaTecnica', 1, {
       upgrade(db) {
         if (!db.objectStoreNames.contains('users')) {
-          const store = db.createObjectStore('users', { keyPath: 'id' });
+          const store = db.createObjectStore('users', { keyPath: 'uuid' });
           store.createIndex('by-email', 'email');
         }
       },
@@ -43,13 +43,13 @@ export class UserLocalDbService {
     return db.getAll('users');
   }
 
-  async getById(id: string): Promise<Usermodel | undefined> {
+  async getById(uuid: string): Promise<Usermodel | undefined> {
     const db = await this.dbPromise;
-    return db.get('users', id);
+    return db.get('users', uuid);
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(uuid: string): Promise<void> {
     const db = await this.dbPromise;
-    await db.delete('users', id);
+    await db.delete('users', uuid);
   }
 }
