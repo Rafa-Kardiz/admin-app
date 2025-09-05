@@ -40,7 +40,7 @@ export class Login {
         this.messageService.add({ severity: 'success', summary: 'Logeo exitoso', detail: `Bienvenido: ${result.username}` });
         this.router.navigate(['/admin']);
       } else {
-        this.messageService.add({ severity: 'error', summary: 'Error al logear', detail: `Error en el usuario o contraseña` });
+        this.messageService.add({ severity: 'error', summary: 'Error al iniciar sesión', detail: `Error en el usuario o contraseña` });
       }
 
     }).catch(error => {

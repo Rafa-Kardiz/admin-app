@@ -22,7 +22,7 @@ export class UserList {
   columList: tableModel[] = [
     { name: "Usuario", key: "username" },
     { name: "Nombre", key: "name" },
-    { name: "Telefono", key: "phone" },
+    { name: "Teléfono", key: "phone" },
     { name: "Correo", key: "email" }
   ];
 
