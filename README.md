@@ -146,6 +146,6 @@ El proyecto está organizado en **tres capas principales** siguiendo **Clean Arc
 Este proyecto está desplegado en **Vercel**, con integración continua desde GitHub.  
 Puedes acceder a la aplicación en el siguiente enlace:  
 
-🔗 [Admin App en Vercel](https://vercel.com/rafa-kardizs-projects/admin-app)
+🔗 [Admin App en Vercel](https://admin-app-three-pink.vercel.app/login)
 
 ---
