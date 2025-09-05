@@ -137,7 +137,7 @@ El proyecto está organizado en **tres capas principales** siguiendo **Clean Arc
 - Proyecto Angular **SPA** con soporte de **standalone components** y **signals**.  
 - Arquitectura modular y escalable gracias a **Clean Architecture**.  
 - El uso de **interfaces estrictas con TypeScript** facilita mantenimiento.
-
+- En la primera carga, la lista de usuarios se obtiene desde 🔗 [Placeholder](https://jsonplaceholder.typicode.com/users) Posteriormente, los datos se almacenan en IndexedDB, y a partir de ahí todas las operaciones y cambios se gestionan localmente.
 ---
 
 
