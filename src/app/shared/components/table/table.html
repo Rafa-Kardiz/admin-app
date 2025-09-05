@@ -4,8 +4,7 @@
       <div class="py-3 w-full sm:w-1/2 h-10">
          <p-floatlabel variant="on">
             <input pInputText id="buscar" autocomplete="off" class="w-full p-2"
-               (input)="dt2.filterGlobal($event.target.value, 'contains')" />
-            <label for="in_label">Buscar...</label>
+               (input)="dt2.filterGlobal($event.target.value, 'contains')" placeholder="Buscar..." />
          </p-floatlabel>
          <hr>
       </div>

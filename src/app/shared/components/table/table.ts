@@ -8,10 +8,11 @@ import { InputIconModule } from 'primeng/inputicon';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { TooltipModule } from 'primeng/tooltip';
 import { output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-table',
-  imports: [TableModule, ButtonModule, IconFieldModule, InputIconModule, FloatLabelModule, TooltipModule],
+  imports: [TableModule, ButtonModule, IconFieldModule, InputIconModule, FloatLabelModule, TooltipModule, FormsModule],
   templateUrl: './table.html'
 })
 export class TableComponent implements OnInit {
@@ -23,6 +24,7 @@ export class TableComponent implements OnInit {
   deleteAction = output<string>();
   viewDetailAction = output<string>();
   uniqueIdColumn = input.required<string>();
+  busqueda = "";
 
   ngOnInit(): void {
     const columnsList = this.columns();
